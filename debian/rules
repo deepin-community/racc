@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+docs_html := $(shell find rdoc -type f | sed -e 's/\.rdoc$$/.html/') README.html README.ja.html
+rdocs_html := $(shell find rdoc -type f -name '*.rdoc' | sed -e 's/\.rdoc$$/.html/') README.html README.ja.html
+export GEM2DEB_TEST_RUNNER = --check-dependencies
+
+%:
+	dh $@ --buildsystem=ruby --with ruby
+
+%.html: %.rdoc
+	ruby -Ku /usr/bin/rd2 $< -o `echo $< | sed -e 's/\.rdoc$$//'`
+
+override_dh_install: $(docs_html)
+	dh_install
+
+override_dh_clean:
+	rm -f $(rdocs_html)
+	rm -f test/out.log
+	dh_clean

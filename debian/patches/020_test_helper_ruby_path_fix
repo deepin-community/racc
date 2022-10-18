@@ -1,0 +1,17 @@
+Description: Fix Ruby path for helper script
+Author: Taku YASUI <tach@debian.org>
+Forwarded: not-needed
+Last-Update: 2012-05-08
+
+--- a/test/helper.rb
++++ b/test/helper.rb
+@@ -77,7 +77,8 @@ module Racc
+     def ruby arg
+       Dir.chdir(TEST_DIR) do
+         Tempfile.open 'test' do |io|
+-          cmd = "#{ENV['_'] || Gem.ruby} -I #{INC} #{arg} 2>#{io.path}"
++          cmd = File.symlink?("/proc/#{$$}/exe") ? File.readlink("/proc/#{$$}/exe") : ENV['_']
++          cmd = "#{cmd} -I #{INC} #{arg} 2>#{io.path}"
+           result = system(cmd)
+           assert(result, io.read)
+         end

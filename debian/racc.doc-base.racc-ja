@@ -1,0 +1,10 @@
+Document: racc-ja
+Title: Racc Manual (ja)
+Author: Minero Aoki
+Abstract: Racc is LALR(1) parser generator coded for Ruby.  Written by
+ Ruby and output Ruby source. (written in Japanese)
+Section: Programming/Ruby
+
+Format: HTML
+Index: /usr/share/doc/racc/ja/index.ja.html
+Files: /usr/share/doc/racc/ja/*.html

@@ -1,0 +1,16 @@
+Description: Disable build extension
+Author: Taku YASUI <tach@debian.org>
+Forwarded: not-needed
+Last-Update: 2012-05-08
+
+--- a/metadata.yml
++++ b/metadata.yml
+@@ -79,8 +79,6 @@ executables:
+ - racc
+ - racc2y
+ - y2racc
+-extensions:
+-- ext/racc/extconf.rb
+ extra_rdoc_files:
+ - Manifest.txt
+ - README.ja.rdoc
